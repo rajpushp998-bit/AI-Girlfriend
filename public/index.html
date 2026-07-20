@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Girlfriend</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="live-interface">
+        <div class="header">
+          <div class="header-main">
+            <h1 class="app-title">MY AI Girlfriend</h1>
+            <p class="app-subtitle">
+              <span class="ws-indicator" id="ws-indicator"></span>
+              Priya 💕
+            </p>
+          </div>
+        </div>
+
+        <div class="live-stage">
+          <div class="avatar-container" id="avatar-container">
+            <div class="avatar-ring ring-3"></div>
+            <div class="avatar-ring ring-2"></div>
+            <div class="avatar-ring ring-1"></div>
+            <div class="avatar-orb" id="avatar-orb">
+              <i class="fas fa-heart avatar-icon"></i>
+            </div>
+          </div>
+
+          <div class="live-status-container">
+            <h2 class="live-status-title" id="status-title">Connecting WebSocket...</h2>
+            <p class="live-status-subtitle" id="status-subtitle">Tap mic to start talking</p>
+          </div>
+
+        </div>
+
+        <div class="live-controls">
+          <div class="mic-wrapper">
+            <button class="live-mic-button" id="mic-button" title="Tap to toggle live listening" aria-label="Microphone">
+              <i class="fas fa-microphone" id="mic-icon"></i>
+            </button>
+            <span class="mic-hint">Tap to Start / Stop Listening</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

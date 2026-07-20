@@ -1,0 +1,301 @@
+:root {
+  --primary: #7f5af0;
+  --secondary: #ff6b6b;
+  --dark: #16161a;
+  --light: #fffffe;
+  --background: #1a1a24;
+  --card-bg: #242438;
+  --shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  --gradient: linear-gradient(135deg, var(--primary), #5038e0);
+  --gradient-secondary: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--background);
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.app-container {
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.live-interface {
+  background: var(--card-bg);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header {
+  padding: 1.25rem;
+  background: var(--gradient);
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-main {
+  text-align: center;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.app-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.95;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.ws-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffbd2e;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.ws-indicator.connected {
+  background: #2cb67d;
+  box-shadow: 0 0 10px #2cb67d;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.voice-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.voice-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.voice-select {
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.voice-select option {
+  background: #242438;
+  color: #fff;
+}
+
+.live-stage {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  gap: 2rem;
+  text-align: center;
+}
+
+.avatar-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-orb {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--gradient-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  z-index: 2;
+  box-shadow: 0 0 30px rgba(255, 65, 108, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.avatar-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 65, 108, 0.4);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.ring-1 { width: 130px; height: 130px; }
+.ring-2 { width: 155px; height: 155px; opacity: 0.6; }
+.ring-3 { width: 180px; height: 180px; opacity: 0.3; }
+
+.avatar-orb.listening {
+  animation: pulseOrb 1.2s infinite alternate;
+  background: linear-gradient(135deg, #7f5af0, #2cb67d);
+  box-shadow: 0 0 40px rgba(127, 90, 240, 0.7);
+}
+
+.avatar-orb.speaking {
+  animation: pulseOrb 0.8s infinite alternate;
+  background: var(--gradient-secondary);
+  box-shadow: 0 0 50px rgba(255, 65, 108, 0.8);
+}
+
+.avatar-container.speaking .ring-1,
+.avatar-container.speaking .ring-2,
+.avatar-container.speaking .ring-3 {
+  animation: ringWave 1.5s infinite linear;
+}
+
+@keyframes pulseOrb {
+  0% { transform: scale(0.96); }
+  100% { transform: scale(1.06); }
+}
+
+@keyframes ringWave {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.25); opacity: 0; }
+}
+
+.live-status-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.live-status-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.live-status-subtitle {
+  font-size: 0.9rem;
+  color: #a0a0b8;
+}
+
+.live-caption-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.caption-text {
+  font-size: 0.95rem;
+  color: #e0e0f0;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.live-controls {
+  padding: 1.5rem 1.75rem 1.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mic-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mic-hint {
+  font-size: 0.75rem;
+  color: #a0a0b8;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
+.live-mic-button {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--gradient-secondary);
+  color: white;
+  font-size: 1.75rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+}
+
+.live-mic-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(255, 65, 108, 0.6);
+}
+
+.live-mic-button.listening {
+  background: linear-gradient(135deg, #7f5af0, #2cb67d);
+  animation: pulseMic 1.2s infinite;
+}
+
+@keyframes pulseMic {
+  0% { box-shadow: 0 0 0 0 rgba(127, 90, 240, 0.8); }
+  70% { box-shadow: 0 0 0 20px rgba(127, 90, 240, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(127, 90, 240, 0); }
+}
