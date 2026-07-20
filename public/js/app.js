@@ -97,7 +97,7 @@ function playPcmChunk(base64Pcm, sampleRate) {
       isSpeaking = false;
       if (!isMicActive) {
         setOrbState(null);
-        setStatus('Priya is ready 💕', 'Tap mic to talk');
+        setStatus('Priya is online 💕', 'Tap mic to talk live');
       }
     }, msUntilEnd);
 
@@ -265,7 +265,7 @@ function stopLiveMicStreaming() {
 
   if (!isSpeaking) {
     setOrbState(null);
-    setStatus('Processing...', 'Priya is thinking...');
+    setStatus('Priya is online 💕', 'Tap mic to talk live');
   }
   console.log('[Mic] Stopped');
 }
