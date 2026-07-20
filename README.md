@@ -176,6 +176,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 🙏 Acknowledgments
 
-- Built with ❤️ by [Abhishek (Abhishekk066)](https://github.com/Abhishekk066)
+- Built with ❤️ by [pushp (pushpk066)](https://github.com/pushpk066)
 - Powered by Google Gemini AI
 - Voice technology using Web Speech API
